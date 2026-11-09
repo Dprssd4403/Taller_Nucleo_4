@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  background: #f4f6fb;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1180px, calc(100% - 32px));
+  margin: auto;
+}
+
+.btn {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+}
+
+.btn.secondary {
+  background: #e8edf7;
+  color: #24324b;
+}
+
+.btn.danger {
+  background: #dc2626;
+}
+
+.btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+}
+
+.field textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+
+.muted {
+  color: #64748b;
+}
+
+.error {
+  color: #b91c1c;
+  background: #fee2e2;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success {
+  color: #166534;
+  background: #dcfce7;
+  padding: 10px;
+  border-radius: 8px;
+}

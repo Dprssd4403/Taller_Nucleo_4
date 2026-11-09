@@ -1,0 +1,109 @@
+<header class="topbar">
+
+  <a class="logo" href="/catalog">
+    MiTienda
+  </a>
+
+  <div class="top-actions">
+
+    <span>Hola, {{ userName }}</span>
+
+    @if(isAdmin) {
+
+      <button
+        class="btn secondary"
+        (click)="goAdmin()"
+      >
+        Administrar
+      </button>
+
+    }
+
+    <button
+      class="btn"
+      (click)="logout()"
+    >
+      Cerrar sesión
+    </button>
+
+  </div>
+
+</header>
+
+<main class="container catalog">
+
+  <div class="intro">
+
+    <p class="eyebrow">CATÁLOGO</p>
+
+    <h1>Productos disponibles</h1>
+
+    <p class="muted">
+      Explora los productos de nuestra tienda.
+    </p>
+
+  </div>
+
+  @if(loading) {
+    <p>Cargando productos...</p>
+  }
+
+  @if(error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if(!loading && !error) {
+
+    <section class="product-grid">
+
+      @for(product of products; track product.id) {
+
+        <article class="product-card">
+
+          <img
+            [src]="product.image || 'https://placehold.co/600x400?text=Producto'"
+            [alt]="product.name"
+            loading="lazy"
+          >
+
+          <div class="product-content">
+
+            <span class="category">
+              {{ product.category }}
+            </span>
+
+            <h2>{{ product.name }}</h2>
+
+            <p class="muted description">
+              {{ product.description }}
+            </p>
+
+            <div class="product-footer">
+
+              <strong>
+                {{ product.price | currency:'USD':'symbol':'1.2-2' }}
+              </strong>
+
+              <span class="stock">
+                Stock: {{ product.stock }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      } @empty {
+
+        <p class="muted">
+          Todavía no hay productos registrados.
+        </p>
+
+      }
+
+    </section>
+
+  }
+
+</main>

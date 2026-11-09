@@ -1,0 +1,289 @@
+<header class="admin-bar">
+
+  <div>
+    <strong>Panel de administración</strong>
+    <span>Gestión de productos</span>
+  </div>
+
+  <div class="actions">
+
+    <button
+      class="btn secondary"
+      (click)="backToCatalog()"
+    >
+      Ver catálogo
+    </button>
+
+    <button
+      class="btn"
+      (click)="logout()"
+    >
+      Cerrar sesión
+    </button>
+
+  </div>
+
+</header>
+
+<main class="container admin-layout">
+
+  <section class="panel form-panel">
+
+    <div class="section-heading">
+
+      <div>
+
+        <p class="eyebrow">PRODUCTOS</p>
+
+        <h1>
+          {{ editingId !== null
+            ? 'Editar producto'
+            : 'Nuevo producto'
+          }}
+        </h1>
+
+      </div>
+
+      @if(editingId !== null) {
+
+        <button
+          class="btn secondary"
+          type="button"
+          (click)="resetForm()"
+        >
+          Cancelar
+        </button>
+
+      }
+
+    </div>
+
+    @if(error) {
+      <p class="error" role="alert">
+        {{ error }}
+      </p>
+    }
+
+    @if(success) {
+      <p class="success" role="status">
+        {{ success }}
+      </p>
+    }
+
+    <form
+      (ngSubmit)="saveProduct()"
+      #productForm="ngForm"
+    >
+
+      <label class="field">
+
+        <span>Nombre *</span>
+
+        <input
+          name="name"
+          [(ngModel)]="product.name"
+          required
+          maxlength="100"
+          placeholder="Ej. Laptop Lenovo"
+        >
+
+      </label>
+
+      <label class="field">
+
+        <span>Descripción *</span>
+
+        <textarea
+          name="description"
+          [(ngModel)]="product.description"
+          required
+          maxlength="500"
+          placeholder="Describe el producto"
+        ></textarea>
+
+      </label>
+
+      <div class="two-cols">
+
+        <label class="field">
+
+          <span>Precio (USD) *</span>
+
+          <input
+            type="number"
+            name="price"
+            [(ngModel)]="product.price"
+            required
+            min="0"
+            step="0.01"
+          >
+
+        </label>
+
+        <label class="field">
+
+          <span>Stock *</span>
+
+          <input
+            type="number"
+            name="stock"
+            [(ngModel)]="product.stock"
+            required
+            min="0"
+            step="1"
+          >
+
+        </label>
+
+      </div>
+
+      <label class="field">
+
+        <span>Categoría *</span>
+
+        <input
+          name="category"
+          [(ngModel)]="product.category"
+          required
+          placeholder="Ej. Tecnología"
+        >
+
+      </label>
+
+      <label class="field">
+
+        <span>URL de imagen</span>
+
+        <input
+          type="url"
+          name="image"
+          [(ngModel)]="product.image"
+          placeholder="https://..."
+        >
+
+      </label>
+
+      <button
+        class="btn submit"
+        type="submit"
+        [disabled]="productForm.invalid || saving"
+      >
+        {{
+          saving
+            ? 'Guardando...'
+            : (editingId !== null
+                ? 'Guardar cambios'
+                : 'Crear producto')
+        }}
+      </button>
+
+    </form>
+
+  </section>
+
+  <section class="panel list-panel">
+
+    <div class="section-heading">
+
+      <div>
+
+        <p class="eyebrow">INVENTARIO</p>
+
+        <h2>Productos registrados</h2>
+
+      </div>
+
+      <span class="count">
+        {{ products.length }} productos
+      </span>
+
+    </div>
+
+    @if(loading) {
+
+      <p class="muted">Cargando productos...</p>
+
+    } @else if(products.length === 0) {
+
+      <p class="muted">
+        No hay productos. Registra el primero con el formulario.
+      </p>
+
+    } @else {
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Categoría</th>
+              <th>Acciones</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            @for(item of products; track item.id) {
+
+              <tr>
+
+                <td class="product-name">
+
+                  <img
+                    [src]="item.image || 'https://placehold.co/80x80?text=Producto'"
+                    [alt]="item.name"
+                  >
+
+                  <span>{{ item.name }}</span>
+
+                </td>
+
+                <td>
+                  {{ item.price | currency:'USD':'symbol':'1.2-2' }}
+                </td>
+
+                <td>{{ item.stock }}</td>
+
+                <td>{{ item.category }}</td>
+
+                <td class="row-actions">
+
+                  <button
+                    class="btn secondary"
+                    type="button"
+                    (click)="editProduct(item)"
+                  >
+                    Editar
+                  </button>
+
+                  <button
+                    class="btn danger"
+                    type="button"
+                    (click)="deleteProduct(item)"
+                  >
+                    Eliminar
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </section>
+
+</main>

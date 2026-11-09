@@ -1,0 +1,83 @@
+<main class="login-page">
+
+  <section class="login-card">
+
+    <div class="brand-mark">GP</div>
+
+    <h1>Gestión de productos</h1>
+
+    <p class="muted">
+      Ingresa con tu cuenta de demostración
+    </p>
+
+    <form
+      (ngSubmit)="iniciarSesion()"
+      #loginForm="ngForm"
+    >
+
+      <label class="field">
+
+        <span>Correo electrónico</span>
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          email
+          autocomplete="username"
+          placeholder="correo@ejemplo.com"
+        >
+
+      </label>
+
+      <label class="field">
+
+        <span>Contraseña</span>
+
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          autocomplete="current-password"
+          placeholder="Tu contraseña"
+        >
+
+      </label>
+
+      @if(error) {
+        <p class="error" role="alert">
+          {{ error }}
+        </p>
+      }
+
+      <button
+        class="btn submit"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Ingresar
+      </button>
+
+    </form>
+
+    <aside class="demo-box">
+
+      <strong>Accesos de prueba</strong>
+
+      <p>
+        <b>Administrador:</b>
+        admin@gmail.com / admin123
+      </p>
+
+      <p>
+        <b>Estándar:</b>
+        usuario@gmail.com / user123
+      </p>
+
+    </aside>
+
+  </section>
+
+</main>

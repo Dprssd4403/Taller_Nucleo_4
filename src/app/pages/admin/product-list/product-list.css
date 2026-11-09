@@ -1,0 +1,161 @@
+:host {
+  display: block;
+}
+
+.admin-bar {
+  background: #172554;
+  color: white;
+  padding: 18px max(24px, calc((100% - 1180px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-bar div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-bar span {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.actions .secondary {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 22px;
+  padding-top: 28px;
+  padding-bottom: 60px;
+  align-items: start;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 5px 18px #0f172a08;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-heading h1,
+.section-heading h2 {
+  margin: 4px 0;
+  font-size: 22px;
+}
+
+.eyebrow {
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin: 0;
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.submit {
+  width: 100%;
+}
+
+.count {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 20px;
+  padding: 7px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+th {
+  color: #64748b;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.product-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.product-name img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.row-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.row-actions .btn {
+  padding: 7px 9px;
+  font-size: 12px;
+}
+
+@media (max-width: 850px) {
+
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .admin-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .two-cols {
+    grid-template-columns: 1fr;
+  }
+
+}

@@ -1,0 +1,45 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Lenovo",
+      "description": "Laptop para trabajo y estudio",
+      "price": 850,
+      "stock": 10,
+      "category": "Tecnología",
+      "image": "https://placehold.co/600x400?text=Laptop"
+    },
+    {
+      "id": 2,
+      "name": "Mouse Logitech",
+      "description": "Mouse inalámbrico ergonómico",
+      "price": 25,
+      "stock": 30,
+      "category": "Accesorios",
+      "image": "https://placehold.co/600x400?text=Mouse"
+    },
+    {
+      "id": 3,
+      "name": "Teclado mecánico",
+      "description": "Teclado mecánico RGB",
+      "price": 65,
+      "stock": 15,
+      "category": "Accesorios",
+      "image": "https://placehold.co/600x400?text=Teclado"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Administrador",
+      "email": "admin@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Usuario estándar",
+      "email": "usuario@gmail.com",
+      "role": "user"
+    }
+  ]
+}
